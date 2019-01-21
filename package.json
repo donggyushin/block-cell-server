@@ -1,0 +1,8 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "My first official outsourcing project",
+  "main": "index.js",
+  "author": "rontend",
+  "license": "MIT"
+}

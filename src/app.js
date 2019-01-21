@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cookieParser());
+app.use("/", express.static(__dirname + "/frontend/build/index.html"));
 app.use("/api", router);
 
 export default app;

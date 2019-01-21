@@ -1,7 +1,8 @@
 import express from "express";
+import router from "./api";
 
-const test = () => {
-  console.log("asd");
-};
+const app = express();
 
-test();
+app.use("/api", router);
+
+export default app;

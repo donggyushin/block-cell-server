@@ -6,5 +6,6 @@
 
 - [ ] new account
 - [ ] email verification
+- [ ] hashing password
 - [ ] jwt token
 - [ ] login

@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/init.js",
     "build": "babel src --out-dir dist",
-    "start": "node dist/init.js"
+    "start": "NODE_ENV=production node dist/init.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

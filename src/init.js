@@ -8,4 +8,6 @@ const handleListen = () => {
   console.log(`✅   Block cell Application is listening on port ${port}`);
 };
 
+console.log("hahaha");
+
 App.listen(port, handleListen);

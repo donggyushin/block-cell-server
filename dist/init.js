@@ -4,7 +4,7 @@ var _app = _interopRequireDefault(require("./app"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
-require("./db");
+require("./mysql");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

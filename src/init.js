@@ -1,5 +1,6 @@
 import App from "./app";
 import dotenv from "dotenv";
+import "./mysql";
 dotenv.config();
 
 const port = process.env.PORT;

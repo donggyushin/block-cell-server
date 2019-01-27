@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import "./mysql";
 dotenv.config();
 
-const port = process.env.PORT;
+let port = process.env.PORT;
 
 const env = process.env.NODE_ENV || "dev";
 if (env === "dev") {

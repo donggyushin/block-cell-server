@@ -2,11 +2,17 @@ import express from "express";
 import multer from "multer";
 import postComment from "../controller/commentForNotice/postComment";
 import deleteComment from "../controller/commentForNotice/deleteComment";
+import getComments from "../controller/commentForNotice/getComments";
 
 const router = express.Router();
 const upload = multer();
 
 // get
+router.get("/:noticeId", async (req, res) => {
+  const { noticeId } = req.params;
+  const returnType = await getComments(noticeId);
+  res.json(returnType);
+});
 
 // post
 

@@ -1,0 +1,1 @@
+const getNoticeDetail = id => {};

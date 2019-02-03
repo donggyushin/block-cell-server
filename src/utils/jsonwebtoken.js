@@ -18,9 +18,10 @@ export const decodeJWT = async token => {
   );
   const { id } = decoded;
   try {
-    const user = await User.findById(id).then(project => {
+    const user = await User.findByPk(id).then(project => {
       return project;
     });
+
     return user;
   } catch (err) {
     return null;

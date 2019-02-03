@@ -1,6 +1,6 @@
 import App from "./app";
 import dotenv from "dotenv";
-import "./mysql";
+import "./sequelize";
 dotenv.config();
 
 let port = process.env.PORT;

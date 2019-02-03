@@ -4,6 +4,8 @@ import writeNotice from "../controller/notice/writeNotice";
 import deleteNotice from "../controller/notice/deleteNotice";
 import getNoticesBy15 from "../controller/notice/getNoticesBy15";
 import allCountOfNotices from "../controller/notice/allCountOfNotices";
+import getNoticeDetail from "../controller/notice/getNoticeDetail";
+import updateNotice from "../controller/notice/updateNotice";
 
 const router = express.Router();
 const upload = multer();
@@ -20,7 +22,11 @@ router.get("/:page", upload.array(), async (req, res) => {
   res.json(returnType);
 });
 
-router.get("/detail/:id", upload.array(), async (req, res) => {});
+router.get("/detail/:id", upload.array(), async (req, res) => {
+  const { id } = req.params;
+  const returnType = await getNoticeDetail(id);
+  res.json(returnType);
+});
 
 // post
 router.post("/", upload.array(), async (req, res) => {
@@ -41,5 +47,12 @@ router.delete("/:id", upload.array(), async (req, res) => {
 });
 
 // put
+router.put("/:id", upload.array(), async (req, res) => {
+  const token = req.get("X-JWT");
+  const { id } = req.params;
+  const { title, contents } = req.body;
+  const returnType = await updateNotice(token, id, title, contents);
+  res.json(returnType);
+});
 
 export default router;

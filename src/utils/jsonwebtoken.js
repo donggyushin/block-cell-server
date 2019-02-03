@@ -4,7 +4,10 @@ import User from "../model/user/UserModel";
 dotenv.config();
 
 export const createJWT = async id => {
-  const token = jwt.sign({ id }, process.env.JSON_WEB_TOKEN_SECRET_KEY || "");
+  const token = await jwt.sign(
+    { id },
+    process.env.JSON_WEB_TOKEN_SECRET_KEY || ""
+  );
   return token;
 };
 

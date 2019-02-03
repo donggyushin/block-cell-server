@@ -1,6 +1,7 @@
 import App from "./app";
 import dotenv from "dotenv";
 import "./sequelize";
+import "./model/user/UserModel";
 dotenv.config();
 
 let port = process.env.PORT;

@@ -15,7 +15,7 @@ if (env == "dev") {
   database = "blockcell";
 }
 
-const sequelize = new Sequelize(database, user, password, {
+export const sequelize = new Sequelize(database, user, password, {
   host,
   dialect: "mysql",
   operatorsAliases: false,

@@ -1,4 +1,4 @@
-import User from "../../model/user/UserModel";
+import User from "../../model/user";
 import { hashPassword, comparePassword } from "../../utils/bcrypt";
 import { createJWT } from "../../utils/jsonwebtoken";
 

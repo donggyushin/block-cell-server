@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import { sequelize } from "../../sequelize";
+import { sequelize } from "../sequelize";
 
 const User = sequelize.define("user", {
   username: {
@@ -17,7 +17,5 @@ const User = sequelize.define("user", {
     defaultValue: false
   }
 });
-
-User.sync({ force: false });
 
 export default User;

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import User from "../model/user/UserModel";
+import User from "../model/user";
 dotenv.config();
 
 export const createJWT = async id => {

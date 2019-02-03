@@ -16,4 +16,6 @@ app.use(cookieParser());
 app.use("/api", router);
 app.use("/", express.static(__dirname + "/../frontend/build"));
 
+//database relationships
+
 export default app;

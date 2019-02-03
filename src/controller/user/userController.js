@@ -1,4 +1,5 @@
 import User from "../../model/user/UserModel";
+import { hashPassword } from "../../utils/bcrypt";
 
 export const newAccoutFN = async (username, password1, password2) => {
   if (password1 !== password2) {
@@ -8,10 +9,12 @@ export const newAccoutFN = async (username, password1, password2) => {
     };
   }
 
+  const hashedPassword = await hashPassword(password1);
+
   if (username === "blockcell") {
     const returnType = await User.findOrCreate({
       where: { username },
-      defaults: { password: password1, admin: true }
+      defaults: { password: hashedPassword, admin: true }
     }).spread((user, created) => {
       if (!created) {
         console.log("1");
@@ -30,7 +33,7 @@ export const newAccoutFN = async (username, password1, password2) => {
   } else {
     const returnType = await User.findOrCreate({
       where: { username },
-      defaults: { password: password1 }
+      defaults: { password: hashedPassword }
     }).spread((user, created) => {
       if (!created) {
         return {

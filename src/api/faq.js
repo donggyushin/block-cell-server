@@ -4,6 +4,7 @@ import postFaq from "../controller/faq/postFaq";
 import deleteFaq from "../controller/faq/deleteFaq";
 import getFaqBy15 from "../controller/faq/getFaqBy15";
 import getFaqDetail from "../controller/faq/getFaqDetail";
+import putFaq from "../controller/faq/putFaq";
 
 const router = express.Router();
 const upload = multer();
@@ -30,6 +31,13 @@ router.post("/", upload.array(), async (req, res) => {
 });
 
 // PUT
+router.put("/:id", upload.array(), async (req, res) => {
+  const token = req.get("X-JWT");
+  const { title, contents } = req.body;
+  const { id } = req.params;
+  const returnType = await putFaq(token, title, contents, id);
+  res.json(returnType);
+});
 
 // DELETE
 router.delete("/:id", async (req, res) => {

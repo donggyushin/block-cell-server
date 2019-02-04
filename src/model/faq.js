@@ -8,6 +8,10 @@ const FAQ = sequelize.define("faq", {
   },
   contents: {
     type: Sequelize.TEXT
+  },
+  views: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 });
 

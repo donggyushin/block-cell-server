@@ -8,6 +8,10 @@ const Notice = sequelize.define("notice", {
   },
   contents: {
     type: Sequelize.TEXT
+  },
+  views: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 });
 

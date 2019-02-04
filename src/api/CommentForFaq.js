@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import postCommentForFaq from "../controller/commentForFaq/post";
 import getCommentForFaq from "../controller/commentForFaq/get";
+import deleteCommentForFaq from "../controller/commentForFaq/delete";
 
 const router = express.Router();
 const upload = multer();
@@ -25,5 +26,11 @@ router.post("/:faqId", upload.array(), async (req, res) => {
 // PUT
 
 // DELETE
+router.delete("/:id", async (req, res) => {
+  const token = req.get("X-JWT");
+  const { id } = req.params;
+  const returnType = await deleteCommentForFaq(token, id);
+  res.json(returnType);
+});
 
 export default router;

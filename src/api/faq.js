@@ -5,11 +5,18 @@ import deleteFaq from "../controller/faq/deleteFaq";
 import getFaqBy15 from "../controller/faq/getFaqBy15";
 import getFaqDetail from "../controller/faq/getFaqDetail";
 import putFaq from "../controller/faq/putFaq";
+import countFaq from "../controller/faq/countFaq";
 
 const router = express.Router();
 const upload = multer();
 
 // GET
+
+router.get("/count", async (req, res) => {
+  const returnType = await countFaq();
+  res.json(returnType);
+});
+
 router.get("/detail/:id", async (req, res) => {
   const { id } = req.params;
   const returnType = await getFaqDetail(id);

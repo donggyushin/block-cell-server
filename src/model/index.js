@@ -3,11 +3,14 @@ import User from "./user";
 import Notice from "./notice";
 import CommentForNotice from "./commentForNotice";
 import FAQ from "./faq";
+import CommentForFaq from "./commentForFaq";
 
 Notice.User = Notice.belongsTo(User);
 CommentForNotice.User = CommentForNotice.belongsTo(User);
 CommentForNotice.Notice = CommentForNotice.belongsTo(Notice);
 User.hasMany(FAQ, { as: "faqs" });
 FAQ.User = FAQ.belongsTo(User);
+CommentForFaq.belongsTo(User);
+CommentForFaq.belongsTo(FAQ);
 
 sequelize.sync({ force: false });

@@ -3,11 +3,18 @@ import multer from "multer";
 import postFaq from "../controller/faq/postFaq";
 import deleteFaq from "../controller/faq/deleteFaq";
 import getFaqBy15 from "../controller/faq/getFaqBy15";
+import getFaqDetail from "../controller/faq/getFaqDetail";
 
 const router = express.Router();
 const upload = multer();
 
 // GET
+router.get("/detail/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await getFaqDetail(id);
+  res.json(returnType);
+});
+
 router.get("/:page", async (req, res) => {
   const { page } = req.params;
   const returnType = await getFaqBy15(page);

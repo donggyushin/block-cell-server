@@ -2,10 +2,17 @@ import express from "express";
 import multer from "multer";
 import postFaq from "../controller/faq/postFaq";
 import deleteFaq from "../controller/faq/deleteFaq";
+import getFaqBy15 from "../controller/faq/getFaqBy15";
+
 const router = express.Router();
 const upload = multer();
 
 // GET
+router.get("/:page", async (req, res) => {
+  const { page } = req.params;
+  const returnType = await getFaqBy15(page);
+  res.json(returnType);
+});
 
 // POST
 router.post("/", upload.array(), async (req, res) => {

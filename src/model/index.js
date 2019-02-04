@@ -8,5 +8,6 @@ Notice.User = Notice.belongsTo(User);
 CommentForNotice.User = CommentForNotice.belongsTo(User);
 CommentForNotice.Notice = CommentForNotice.belongsTo(Notice);
 User.hasMany(FAQ, { as: "faqs" });
+FAQ.User = FAQ.belongsTo(User);
 
 sequelize.sync({ force: false });

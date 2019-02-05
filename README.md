@@ -4,10 +4,10 @@
 
 ### Authentication
 
-- [ ] new account
-- [ ] email verification
-- [ ] hashing password
-- [ ] jwt token
-- [ ] login
+- [x] new account
+- [x] email verification
+- [x] hashing password
+- [x] jwt token
+- [x] login
 
 ## 신동규 짱짱맨

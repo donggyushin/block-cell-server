@@ -1,5 +1,7 @@
 import Notice from "../../model/notice";
 import User from "../../model/user";
+import CommentForNotice from "../../model/commentForNotice";
+import { sequelize } from "../../sequelize";
 
 const getNoticesBy15 = async page => {
   const offset = 15 * (page - 1);
@@ -9,8 +11,26 @@ const getNoticesBy15 = async page => {
       offset,
       limit: 15,
       order: [["id", "DESC"]],
+      subQuery: false,
+
       attributes: ["id", "title", "createdAt"],
-      include: [{ model: User, attributes: ["username"] }]
+
+      include: [
+        {
+          model: CommentForNotice,
+          attributes: [
+            [
+              sequelize.fn("COUNT", sequelize.col("CommentForNotices.id")),
+              "commentCounts"
+            ]
+          ]
+        },
+        {
+          model: User,
+          attributes: ["username"]
+        }
+      ],
+      group: ["notice.id", "commentForNotices.id"]
     });
     return {
       ok: true,

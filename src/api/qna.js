@@ -5,6 +5,9 @@ import deleteQna from "../controller/qna/deleteQna";
 import putQna from "../controller/qna/putQna";
 import getQnaBy15 from "../controller/qna/getQnaBy15";
 import getQnaDetail from "../controller/qna/qetQnaDetail";
+import GetNextQNADetail from "../controller/qna/getNextDetail";
+import GetPreviousQNADetail from "../controller/qna/getPreviousDetail";
+import SearchQNA from "../controller/qna/SearchByTerm";
 
 const router = express.Router();
 const upload = multer();
@@ -13,6 +16,24 @@ const upload = multer();
 router.get("/detail/:id", async (req, res) => {
   const { id } = req.params;
   const returnType = await getQnaDetail(id);
+  res.json(returnType);
+});
+
+router.get("/next/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await GetNextQNADetail(id);
+  res.json(returnType);
+});
+
+router.get("/previous/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await GetPreviousQNADetail(id);
+  res.json(returnType);
+});
+
+router.get("/search/:searchTerm", async (req, res) => {
+  const { searchTerm } = req.params;
+  const returnType = await SearchQNA(searchTerm);
   res.json(returnType);
 });
 

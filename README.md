@@ -23,9 +23,9 @@
 - [x] Make comments count
 - [x] Increase +1 view when user gets in detail
 - [x] rendering views
-- [ ] Get next detail
-- [ ] Get previous detail
-- [ ] Find items with part of title
+- [x] Get next detail
+- [x] Get previous detail
+- [x] Find items with part of title
 
 ### QNA
 

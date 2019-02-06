@@ -6,6 +6,9 @@ import getFaqBy15 from "../controller/faq/getFaqBy15";
 import getFaqDetail from "../controller/faq/getFaqDetail";
 import putFaq from "../controller/faq/putFaq";
 import countFaq from "../controller/faq/countFaq";
+import GetNextFAQDetail from "../controller/faq/getNextDetail";
+import GetPreviousFAQDetail from "../controller/faq/getPreviousDetail";
+import SearchFAQ from "../controller/faq/searchByTerm";
 
 const router = express.Router();
 const upload = multer();
@@ -17,9 +20,27 @@ router.get("/count", async (req, res) => {
   res.json(returnType);
 });
 
+router.get("/next/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await GetNextFAQDetail(id);
+  res.json(returnType);
+});
+
+router.get("/previous/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await GetPreviousFAQDetail(id);
+  res.json(returnType);
+});
+
 router.get("/detail/:id", async (req, res) => {
   const { id } = req.params;
   const returnType = await getFaqDetail(id);
+  res.json(returnType);
+});
+
+router.get("/search/:searchValue", async (req, res) => {
+  const { searchValue } = req.params;
+  const returnType = await SearchFAQ(searchValue);
   res.json(returnType);
 });
 

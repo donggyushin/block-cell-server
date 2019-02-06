@@ -1,27 +1,34 @@
 import QNA from "../../model/qna";
 import User from "../../model/user";
+import CommentForQna from "../../model/commentForQna";
+import { sequelize } from "../../sequelize";
 
 const getQnaBy15 = async page => {
   const offset = 15 * (page - 1);
 
   try {
     const qnas = await QNA.findAll({
-      attributes: ["id", "title", "updatedAt"],
-      //   include: [
-      //     {
-      //       model: User,
-      //       attributes: ["username"]
-      //     }
-      //   ],
+      offset,
+      limit: 15,
+      order: [["id", "DESC"]],
+      subQuery: false,
+      attributes: ["id", "title", "updatedAt", "views"],
       include: [
+        {
+          model: CommentForQna,
+          attributes: [
+            [
+              sequelize.fn("COUNT", sequelize.col("CommentForQnas.id")),
+              "commentCounts"
+            ]
+          ]
+        },
         {
           model: User,
           attributes: ["username"]
         }
       ],
-      offset,
-      limit: 15,
-      order: [["id", "DESC"]]
+      group: ["qna.id", "commentForqnas.id"]
     });
 
     return {

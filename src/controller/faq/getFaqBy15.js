@@ -1,27 +1,34 @@
 import FAQ from "../../model/faq";
 import User from "../../model/user";
+import CommentForFaq from "../../model/commentForFaq";
+import { sequelize } from "../../sequelize";
 
 const getFaqBy15 = async page => {
   const offset = 15 * (page - 1);
 
   try {
     const faqs = await FAQ.findAll({
-      attributes: ["id", "title", "updatedAt"],
-      //   include: [
-      //     {
-      //       model: User,
-      //       attributes: ["username"]
-      //     }
-      //   ],
+      offset,
+      limit: 15,
+      order: [["id", "DESC"]],
+      subQuery: false,
+      attributes: ["id", "title", "updatedAt", "views"],
       include: [
         {
           model: User,
           attributes: ["username"]
+        },
+        {
+          model: CommentForFaq,
+          attributes: [
+            [
+              sequelize.fn("COUNT", sequelize.col("CommentForFaqs.id")),
+              "commentCounts"
+            ]
+          ]
         }
       ],
-      offset,
-      limit: 15,
-      order: [["id", "DESC"]]
+      group: ["faq.id", "commentForFaqs.id"]
     });
 
     return {

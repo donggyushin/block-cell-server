@@ -13,7 +13,7 @@ const getNoticesBy15 = async page => {
       order: [["id", "DESC"]],
       subQuery: false,
 
-      attributes: ["id", "title", "createdAt"],
+      attributes: ["id", "title", "createdAt", "views"],
 
       include: [
         {
@@ -32,6 +32,7 @@ const getNoticesBy15 = async page => {
       ],
       group: ["notice.id", "commentForNotices.id"]
     });
+
     return {
       ok: true,
       error: null,

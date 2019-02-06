@@ -5,12 +5,24 @@
 ### Authentication
 
 - [x] new account
-- [x] email verification
 - [x] hashing password
 - [x] jwt token
 - [x] login
 
-## 신동규 짱짱맨
+### Notice
 
-- [ ] 게시글 옆에 댓글 수 보이게 하기
-- [ ] 게시글 들어가면 조회수 1 늘리기
+- [x] Make comments count
+- [x] Increase +1 view when user gets in detail
+- [x] rendering views
+
+### FAQ
+
+- [x] Make comments count
+- [x] Increase +1 view when user gets in detail
+- [x] rendering views
+
+### QNA
+
+- [x] Make comments count
+- [x] Increase +1 view when user gets in detail
+- [x] rendering views

@@ -4,9 +4,13 @@ import FAQ from "../../model/faq";
 const getFaqDetail = async id => {
   try {
     const faqDetail = await FAQ.findByPk(id, {
-      attributes: ["id", "title", "contents", "createdAt"],
+      attributes: ["id", "title", "contents", "createdAt", "views"],
       include: [{ model: User, attributes: ["username"] }]
     });
+
+    faqDetail.views += 1;
+    await faqDetail.save();
+
     return {
       ok: true,
       error: null,

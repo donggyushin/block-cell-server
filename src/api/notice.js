@@ -6,6 +6,9 @@ import getNoticesBy15 from "../controller/notice/getNoticesBy15";
 import allCountOfNotices from "../controller/notice/allCountOfNotices";
 import getNoticeDetail from "../controller/notice/getNoticeDetail";
 import updateNotice from "../controller/notice/updateNotice";
+import GetNextNoticeDetail from "../controller/notice/GetNextDetail";
+import GetPreviousNoticeDetail from "../controller/notice/GetPreviousDetail";
+import SearchNotice from "../controller/notice/searchNotice";
 
 const router = express.Router();
 const upload = multer();
@@ -15,16 +18,32 @@ router.get("/count", upload.array(), async (req, res) => {
   const returnType = await allCountOfNotices();
   res.json(returnType);
 });
+router.get("/detail/:id", upload.array(), async (req, res) => {
+  const { id } = req.params;
+  const returnType = await getNoticeDetail(id);
+  res.json(returnType);
+});
+router.get("/next/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await GetNextNoticeDetail(id);
+  res.json(returnType);
+});
+
+router.get("/previous/:id", async (req, res) => {
+  const { id } = req.params;
+  const returnType = await GetPreviousNoticeDetail(id);
+  res.json(returnType);
+});
+
+router.get("/search/:searchValue", async (req, res) => {
+  const { searchValue } = req.params;
+  const returnType = await SearchNotice(searchValue);
+  res.json(returnType);
+});
 
 router.get("/:page", upload.array(), async (req, res) => {
   const { page } = req.params;
   const returnType = await getNoticesBy15(page);
-  res.json(returnType);
-});
-
-router.get("/detail/:id", upload.array(), async (req, res) => {
-  const { id } = req.params;
-  const returnType = await getNoticeDetail(id);
   res.json(returnType);
 });
 

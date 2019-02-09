@@ -14,16 +14,10 @@ const getNoticesBy15 = async page => {
       subQuery: false,
 
       attributes: ["id", "title", "createdAt", "views"],
-
       include: [
         {
           model: CommentForNotice,
-          attributes: [
-            [
-              sequelize.fn("COUNT", sequelize.col("CommentForNotices.id")),
-              "commentCounts"
-            ]
-          ]
+          attributes: ["id"]
         },
         {
           model: User,

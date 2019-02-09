@@ -32,7 +32,7 @@ const GetNextQNADetail = async id => {
   } catch (error) {
     return {
       ok: false,
-      error,
+      error: "마지막 페이지입니다",
       qna: null
     };
   }

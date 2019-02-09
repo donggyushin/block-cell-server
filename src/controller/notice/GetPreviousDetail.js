@@ -33,7 +33,7 @@ const GetPreviousNoticeDetail = async id => {
   } catch (error) {
     return {
       ok: false,
-      error,
+      error: "첫번째 페이지입니다. ",
       notice: null
     };
   }

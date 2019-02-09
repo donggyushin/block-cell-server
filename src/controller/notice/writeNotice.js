@@ -3,6 +3,7 @@ import Notice from "../../model/notice";
 
 const writeNotice = async (token, title, contents) => {
   try {
+    console.log(token, title, contents);
     const writer = await decodeJWT(token);
     const admin = writer.admin;
     if (!admin) {

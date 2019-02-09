@@ -32,7 +32,7 @@ const GetNextNoticeDetail = async id => {
   } catch (error) {
     return {
       ok: false,
-      error,
+      error: "마지막 페이지 입니다. ",
       notice: null
     };
   }

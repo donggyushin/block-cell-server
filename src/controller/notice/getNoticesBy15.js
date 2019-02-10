@@ -12,19 +12,20 @@ const getNoticesBy15 = async page => {
       limit: 15,
       order: [["id", "DESC"]],
       subQuery: false,
-
+      distinct: true,
       attributes: ["id", "title", "createdAt", "views"],
       include: [
-        {
-          model: CommentForNotice,
-          attributes: ["id"]
-        },
+        // {
+        //   model: CommentForNotice,
+        //   attributes: []
+        // },
         {
           model: User,
           attributes: ["username"]
         }
-      ],
-      group: ["notice.id", "commentForNotices.id"]
+      ]
+
+      // group: ["notice.id", "commentForNotices.id"]
     });
 
     return {

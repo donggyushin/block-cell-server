@@ -1,5 +1,6 @@
 import { decodeJWT } from "../../utils/jsonwebtoken";
 import CommentForNotice from "../../model/commentForNotice";
+import User from "../../model/user";
 
 const postComment = async (token, id, text) => {
   try {
@@ -12,20 +13,32 @@ const postComment = async (token, id, text) => {
       };
     }
 
-    await CommentForNotice.create({
+    const newComment = await CommentForNotice.create({
       text,
       userId: writer.id,
       noticeId: id
     });
 
+    const comment = await CommentForNotice.findByPk(newComment.id, {
+      attributes: ["id", "text", "createdAt"],
+      include: [
+        {
+          model: User,
+          attributes: ["username"]
+        }
+      ]
+    });
+
     return {
       ok: true,
-      error: null
+      error: null,
+      comment
     };
   } catch (error) {
     return {
       ok: false,
-      error
+      error,
+      comment: null
     };
   }
 };

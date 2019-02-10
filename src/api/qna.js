@@ -8,11 +8,14 @@ import getQnaDetail from "../controller/qna/qetQnaDetail";
 import GetNextQNADetail from "../controller/qna/getNextDetail";
 import GetPreviousQNADetail from "../controller/qna/getPreviousDetail";
 import SearchQNA from "../controller/qna/SearchByTerm";
+import { countQna } from "../controller/qna/getQnaCount";
 
 const router = express.Router();
 const upload = multer();
 
 // GET
+router.get("/count", countQna);
+
 router.get("/detail/:id", async (req, res) => {
   const { id } = req.params;
   const returnType = await getQnaDetail(id);

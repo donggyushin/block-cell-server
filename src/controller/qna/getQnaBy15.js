@@ -12,23 +12,24 @@ const getQnaBy15 = async page => {
       limit: 15,
       order: [["id", "DESC"]],
       subQuery: false,
+      distinct: true,
       attributes: ["id", "title", "updatedAt", "views"],
       include: [
-        {
-          model: CommentForQna,
-          attributes: [
-            [
-              sequelize.fn("COUNT", sequelize.col("CommentForQnas.id")),
-              "commentCounts"
-            ]
-          ]
-        },
+        // {
+        //   model: CommentForQna,
+        //   attributes: [
+        //     [
+        //       sequelize.fn("COUNT", sequelize.col("CommentForQnas.id")),
+        //       "commentCounts"
+        //     ]
+        //   ]
+        // },
         {
           model: User,
           attributes: ["username"]
         }
-      ],
-      group: ["qna.id", "commentForqnas.id"]
+      ]
+      // group: ["qna.id", "commentForqnas.id"]
     });
 
     return {

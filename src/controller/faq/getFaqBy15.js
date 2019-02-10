@@ -12,23 +12,24 @@ const getFaqBy15 = async page => {
       limit: 15,
       order: [["id", "DESC"]],
       subQuery: false,
+      distinct: true,
       attributes: ["id", "title", "updatedAt", "views"],
       include: [
         {
           model: User,
           attributes: ["username"]
-        },
-        {
-          model: CommentForFaq,
-          attributes: [
-            [
-              sequelize.fn("COUNT", sequelize.col("CommentForFaqs.id")),
-              "commentCounts"
-            ]
-          ]
         }
-      ],
-      group: ["faq.id", "commentForFaqs.id"]
+        // {
+        //   model: CommentForFaq,
+        //   attributes: [
+        //     [
+        //       sequelize.fn("COUNT", sequelize.col("CommentForFaqs.id")),
+        //       "commentCounts"
+        //     ]
+        //   ]
+        // }
+      ]
+      // group: ["faq.id", "commentForFaqs.id"]
     });
 
     return {

@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 var _app = _interopRequireDefault(require("./app"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
@@ -8,7 +10,9 @@ require("./sequelize");
 
 require("./model");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+require("babel-core/register");
+
+require("babel-polyfill");
 
 _dotenv.default.config();
 

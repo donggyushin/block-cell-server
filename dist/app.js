@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -16,8 +18,6 @@ var _morgan = _interopRequireDefault(require("morgan"));
 var _helmet = _interopRequireDefault(require("helmet"));
 
 var _cookieParser = _interopRequireDefault(require("cookie-parser"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express.default)(); //middlewares
 

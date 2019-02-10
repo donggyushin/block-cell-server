@@ -1,3 +1,15 @@
 {
-  "presets": ["@babel/preset-env"]
+  "presets": ["@babel/preset-env"],
+  "plugins": [["@babel/transform-runtime"]]
+  // "plugins": ["transform-runtime", "transform-async-to-generator"]
+  // "plugins": [
+  //   [
+  //     "transform-runtime",
+  //     {
+  //       "polyfill": false,
+  //       "regenerator": true
+  //     }
+  //   ]
+  // ]
+  // "presets": ["es2015", "stage-0"]
 }

@@ -2,6 +2,8 @@ import App from "./app";
 import dotenv from "dotenv";
 import "./sequelize";
 import "./model";
+import "babel-core/register";
+import "babel-polyfill";
 
 dotenv.config();
 

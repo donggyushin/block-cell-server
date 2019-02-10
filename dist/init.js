@@ -4,11 +4,11 @@ var _app = _interopRequireDefault(require("./app"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
-require("./mysql");
+require("./sequelize");
+
+require("./model");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
 
 _dotenv.default.config();
 
@@ -16,7 +16,7 @@ var port = process.env.PORT;
 var env = process.env.NODE_ENV || "dev";
 
 if (env === "dev") {
-  port = (_readOnlyError("port"), 3000);
+  port = 3000;
 }
 
 var handleListen = function handleListen() {

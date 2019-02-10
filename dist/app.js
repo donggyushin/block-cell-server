@@ -28,7 +28,13 @@ app.use(_bodyParser.default.urlencoded({
 app.use((0, _helmet.default)());
 app.use((0, _morgan.default)("dev"));
 app.use((0, _cookieParser.default)());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use("/api", _api.default);
-app.use("/", _express.default.static(__dirname + "/../frontend/build"));
+app.use("/", _express.default.static(__dirname + "/../frontend/build")); //database relationships
+
 var _default = app;
 exports.default = _default;

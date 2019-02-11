@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add @bebel/runtime
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add babel-poly
 
 PATH: 
   /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Xamarin Workbooks.app/Contents/SharedSupport/path-bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@bebel%2fruntime: Not found
+  Error: https://registry.yarnpkg.com/babel-poly: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:65656:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:134675:22)
       at Request.emit (events.js:182:13)
@@ -39,12 +39,11 @@ npm manifest:
       "babel-loader": "^8.0.5",
       "babel-plugin-transform-async-to-generator": "^6.24.1",
       "babel-plugin-transform-runtime": "^6.23.0",
-      "babel-polyfill": "^6.26.0",
       "babel-preset-es2015": "^6.24.1",
       "babel-preset-stage-0": "^6.24.1",
-      "bcrypt": "^3.0.3",
       "body-parser": "^1.18.3",
       "cookie-parser": "^1.4.3",
+      "cors": "^2.8.5",
       "dotenv": "^6.2.0",
       "express": "^4.16.4",
       "helmet": "^3.15.0",
@@ -67,8 +66,10 @@ npm manifest:
       "@babel/cli": "^7.2.3",
       "@babel/core": "^7.2.2",
       "@babel/node": "^7.2.2",
+      "@babel/plugin-transform-runtime": "^7.2.0",
       "@babel/polyfill": "^7.2.5",
       "@babel/preset-env": "^7.2.3",
+      "@babel/runtime": "^7.3.1",
       "nodemon": "^1.18.9"
     }
   }
@@ -507,6 +508,15 @@ Lockfile:
     dependencies:
       regenerator-transform "^0.13.3"
   
+  "@babel/plugin-transform-runtime@^7.2.0":
+    version "7.2.0"
+    resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.2.0.tgz#566bc43f7d0aedc880eaddbd29168d0f248966ea"
+    dependencies:
+      "@babel/helper-module-imports" "^7.0.0"
+      "@babel/helper-plugin-utils" "^7.0.0"
+      resolve "^1.8.1"
+      semver "^5.5.1"
+  
   "@babel/plugin-transform-shorthand-properties@^7.2.0":
     version "7.2.0"
     resolved "https://registry.yarnpkg.com/@babel/plugin-transform-shorthand-properties/-/plugin-transform-shorthand-properties-7.2.0.tgz#6333aee2f8d6ee7e28615457298934a3b46198f0"
@@ -611,6 +621,12 @@ Lockfile:
       mkdirp "^0.5.1"
       pirates "^4.0.0"
       source-map-support "^0.5.9"
+  
+  "@babel/runtime@^7.3.1":
+    version "7.3.1"
+    resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.1.tgz#574b03e8e8a9898eaf4a872a92ea20b7846f6f2a"
+    dependencies:
+      regenerator-runtime "^0.12.0"
   
   "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.2.2":
     version "7.2.2"
@@ -1247,14 +1263,6 @@ Lockfile:
       babel-runtime "^6.22.0"
       babel-types "^6.24.1"
   
-  babel-polyfill@^6.26.0:
-    version "6.26.0"
-    resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
-    dependencies:
-      babel-runtime "^6.26.0"
-      core-js "^2.5.0"
-      regenerator-runtime "^0.10.5"
-  
   babel-preset-es2015@^6.24.1:
     version "6.24.1"
     resolved "https://registry.yarnpkg.com/babel-preset-es2015/-/babel-preset-es2015-6.24.1.tgz#d44050d6bc2c9feea702aaf38d727a0210538939"
@@ -1396,13 +1404,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
     dependencies:
       safe-buffer "5.1.2"
-  
-  bcrypt@^3.0.3:
-    version "3.0.3"
-    resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-3.0.3.tgz#7d1e9e5d533c5ea060e6ac8834942c004dbffe9c"
-    dependencies:
-      nan "2.12.1"
-      node-pre-gyp "0.12.0"
   
   big.js@^5.2.2:
     version "5.2.2"
@@ -1742,6 +1743,13 @@ Lockfile:
   core-util-is@~1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
+  
+  cors@^2.8.5:
+    version "2.8.5"
+    resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+    dependencies:
+      object-assign "^4"
+      vary "^1"
   
   create-error-class@^3.0.0:
     version "3.0.2"
@@ -3182,7 +3190,7 @@ Lockfile:
     dependencies:
       lru-cache "2.5.0"
   
-  nan@2.12.1, nan@^2.9.2:
+  nan@^2.9.2:
     version "2.12.1"
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   
@@ -3229,21 +3237,6 @@ Lockfile:
   node-modules-regexp@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
-  
-  node-pre-gyp@0.12.0:
-    version "0.12.0"
-    resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.12.0.tgz#39ba4bb1439da030295f899e3b520b7785766149"
-    dependencies:
-      detect-libc "^1.0.2"
-      mkdirp "^0.5.1"
-      needle "^2.2.1"
-      nopt "^4.0.1"
-      npm-packlist "^1.1.6"
-      npmlog "^4.0.2"
-      rc "^1.2.7"
-      rimraf "^2.6.1"
-      semver "^5.3.0"
-      tar "^4"
   
   node-pre-gyp@^0.10.0:
     version "0.10.3"
@@ -3330,7 +3323,7 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   
-  object-assign@^4.1.0, object-assign@^4.1.1:
+  object-assign@^4, object-assign@^4.1.0, object-assign@^4.1.1:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   
@@ -3642,10 +3635,6 @@ Lockfile:
     version "1.4.0"
     resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
   
-  regenerator-runtime@^0.10.5:
-    version "0.10.5"
-    resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
-  
   regenerator-runtime@^0.11.0:
     version "0.11.1"
     resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
@@ -3778,7 +3767,7 @@ Lockfile:
     dependencies:
       path-parse "^1.0.6"
   
-  resolve@^1.5.0:
+  resolve@^1.5.0, resolve@^1.8.1:
     version "1.10.0"
     resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.10.0.tgz#3bdaaeaf45cc07f375656dfd2e54ed0810b101ba"
     dependencies:
@@ -3831,7 +3820,7 @@ Lockfile:
     dependencies:
       semver "^5.0.3"
   
-  semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.6.0:
+  semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
     version "5.6.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   
@@ -4342,7 +4331,7 @@ Lockfile:
     version "10.11.0"
     resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
   
-  vary@~1.1.2:
+  vary@^1, vary@~1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   

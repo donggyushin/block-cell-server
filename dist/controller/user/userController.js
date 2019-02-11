@@ -139,11 +139,14 @@ function () {
 
           case 3:
             user = _context2.sent;
+            console.log("여기?");
+            console.log(user);
             id = user.id, hashedPassword = user.password;
+            console.log("여기??");
             match = (0, _bcrypt.comparePassword)(password, hashedPassword);
 
             if (match) {
-              _context2.next = 8;
+              _context2.next = 11;
               break;
             }
 
@@ -153,20 +156,22 @@ function () {
               jwt: null
             });
 
-          case 8:
-            _context2.next = 10;
+          case 11:
+            console.log("here!");
+            _context2.next = 14;
             return (0, _jsonwebtoken.createJWT)(id);
 
-          case 10:
+          case 14:
             jwt = _context2.sent;
+            console.log("here!!!!");
             return _context2.abrupt("return", {
               ok: true,
               error: null,
               jwt: jwt
             });
 
-          case 14:
-            _context2.prev = 14;
+          case 19:
+            _context2.prev = 19;
             _context2.t0 = _context2["catch"](0);
             return _context2.abrupt("return", {
               ok: false,
@@ -174,12 +179,12 @@ function () {
               jwt: null
             });
 
-          case 17:
+          case 22:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, this, [[0, 14]]);
+    }, _callee2, this, [[0, 19]]);
   }));
 
   return function loginFN(_x4, _x5) {

@@ -54,7 +54,10 @@ export const newAccoutFN = async (username, password1, password2) => {
 export const loginFN = async (username, password) => {
   try {
     const user = await User.findOne({ where: { username } }).then(user => user);
+    console.log("여기?");
+    console.log(user);
     const { id, password: hashedPassword } = user;
+    console.log("여기??");
     const match = comparePassword(password, hashedPassword);
     if (!match) {
       return {
@@ -63,7 +66,9 @@ export const loginFN = async (username, password) => {
         jwt: null
       };
     }
+    console.log("here!");
     const jwt = await createJWT(id);
+    console.log("here!!!!");
     return {
       ok: true,
       error: null,

@@ -12,8 +12,6 @@ require("./model");
 
 require("babel-core/register");
 
-require("babel-polyfill");
-
 _dotenv.default.config();
 
 var port = process.env.PORT;
@@ -22,6 +20,8 @@ var env = process.env.NODE_ENV || "dev";
 if (env === "dev") {
   port = 3000;
 }
+
+port = 3000; // port = 8001;
 
 var handleListen = function handleListen() {
   console.log("\u2705   Block cell Application is listening on port ".concat(port));

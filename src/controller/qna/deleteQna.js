@@ -6,12 +6,19 @@ const deleteQna = async (token, id) => {
     const writer = await decodeJWT(token);
     const qnaToDelete = await QNA.findByPk(id);
 
-    if (writer.id !== qnaToDelete.userId) {
+    if (!writer.admin) {
       return {
         ok: false,
-        error: "접근 권한이 없습니다. "
+        error: "접근 권한이 없습니다."
       };
     }
+
+    // if (writer.id !== qnaToDelete.userId) {
+    //   return {
+    //     ok: false,
+    //     error: "접근 권한이 없습니다. "
+    //   };
+    // }
 
     await qnaToDelete.destroy();
     return {

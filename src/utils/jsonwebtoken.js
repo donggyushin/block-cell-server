@@ -6,7 +6,7 @@ dotenv.config();
 export const createJWT = async id => {
   const token = await jwt.sign(
     { id },
-    process.env.JSON_WEB_TOKEN_SECRET_KEY || ""
+    process.env.JSON_WEB_TOKEN_SECRET_KEY || "catgirl"
   );
   return token;
 };
@@ -14,7 +14,7 @@ export const createJWT = async id => {
 export const decodeJWT = async token => {
   const decoded = jwt.verify(
     token,
-    process.env.JSON_WEB_TOKEN_SECRET_KEY || ""
+    process.env.JSON_WEB_TOKEN_SECRET_KEY || "catgirl"
   );
   const { id } = decoded;
   try {

@@ -77,7 +77,7 @@ export const loginFN = async (username, password) => {
   } catch (err) {
     return {
       ok: false,
-      error: err,
+      error: "아이디를 다시 한 번 확인해주세요. ",
       jwt: null
     };
   }

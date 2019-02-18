@@ -19,21 +19,21 @@ const SearchFAQ = async searchValue => {
       attributes: ["id", "title", "updatedAt", "views"],
       subQuery: false,
       include: [
-        {
-          model: CommentForFaq,
-          attributes: [
-            [
-              sequelize.fn("COUNT", sequelize.col("CommentForFaqs.id")),
-              "commentCounts"
-            ]
-          ]
-        },
+        // {
+        //   model: CommentForFaq,
+        //   attributes: [
+        //     [
+        //       sequelize.fn("COUNT", sequelize.col("CommentForFaqs.id")),
+        //       "commentCounts"
+        //     ]
+        //   ]
+        // },
         {
           model: User,
           attributes: ["username"]
         }
       ],
-      group: ["faq.id", "commentForFaqs.id"]
+      group: ["faq.id"]
     });
 
     return {

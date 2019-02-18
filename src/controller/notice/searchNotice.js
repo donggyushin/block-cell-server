@@ -19,21 +19,24 @@ const SearchNotice = async searchValue => {
       attributes: ["id", "title", "updatedAt", "views"],
       subQuery: false,
       include: [
-        {
-          model: CommentForNotice,
-          attributes: [
-            [
-              sequelize.fn("COUNT", sequelize.col("CommentForNotices.id")),
-              "commentCounts"
-            ]
-          ]
-        },
+        // {
+        //   model: CommentForNotice,
+        //   attributes: [
+        //     [
+        //       sequelize.fn("COUNT", sequelize.col("CommentForNotices.id")),
+        //       "commentCounts"
+        //     ]
+        //   ]
+        // },
         {
           model: User,
           attributes: ["username"]
         }
       ],
-      group: ["notice.id", "commentForNotices.id"]
+      group: [
+        "notice.id"
+        // , "commentForNotices.id"
+      ]
     });
 
     return {
@@ -42,6 +45,7 @@ const SearchNotice = async searchValue => {
       notices
     };
   } catch (error) {
+    console.log(error);
     return {
       ok: false,
       error,

@@ -19,21 +19,21 @@ const SearchQNA = async searchValue => {
       attributes: ["id", "title", "updatedAt", "views"],
       subQuery: false,
       include: [
-        {
-          model: CommentForQna,
-          attributes: [
-            [
-              sequelize.fn("COUNT", sequelize.col("CommentForQnas.id")),
-              "commentCounts"
-            ]
-          ]
-        },
+        // {
+        //   model: CommentForQna,
+        //   attributes: [
+        //     [
+        //       sequelize.fn("COUNT", sequelize.col("CommentForQnas.id")),
+        //       "commentCounts"
+        //     ]
+        //   ]
+        // },
         {
           model: User,
           attributes: ["username"]
         }
       ],
-      group: ["qna.id", "commentForQnas.id"]
+      group: ["qna.id"]
     });
 
     return {

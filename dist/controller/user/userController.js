@@ -175,7 +175,7 @@ function () {
             _context2.t0 = _context2["catch"](0);
             return _context2.abrupt("return", {
               ok: false,
-              error: _context2.t0,
+              error: "아이디를 다시 한 번 확인해주세요. ",
               jwt: null
             });
 

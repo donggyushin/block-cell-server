@@ -7,6 +7,7 @@ const Op = Sequelize.Op;
 const GetPreviousQNADetail = async id => {
   try {
     console.log(id);
+    console.log("here!!!");
     const qna = await QNA.findOne({
       where: {
         id: {
@@ -23,6 +24,15 @@ const GetPreviousQNADetail = async id => {
       order: [["id", "DESC"]]
     });
 
+    console.log(qna);
+    // if(!qna){
+    //   return {
+    //     ok:false,
+    //     error: "첫번째 페이지입니다. ",
+    //     qna:null
+    //   }
+    // }
+
     qna.views += 1;
     await qna.save();
 
@@ -35,7 +45,7 @@ const GetPreviousQNADetail = async id => {
     return {
       ok: false,
       error: "첫번째 페이지입니다. ",
-      qna
+      qna: null
     };
   }
 };

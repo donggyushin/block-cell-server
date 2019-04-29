@@ -2,27 +2,23 @@ import Sequelize from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
 
-// const env = process.env.NODE_ENV || "dev";
-// let host = process.env.HOST;
-// let user = process.env.USERNAME;
-// let password = process.env.PASSWORD;
-// let database = process.env.DATABASE;
+const env = process.env.NODE_ENV || "dev";
+let host = process.env.HOST;
+let user = process.env.USERNAME;
+let password = process.env.PASSWORD;
+let database = process.env.DATABASE;
 
-// if (env == "dev") {
-//   host = "localhost";
-//   user = "rontend";
-//   password = process.env.DEV_PASSWORD;
-//   database = "blockcell";
-// }
-//const  host = "blockcell.cafe24app.com";
-//const  user = "creativeps";
-//const  password = "avata1023";
-//const  database = "creativeps";
+if (env == "dev") {
+  host = "localhost";
+  user = "rontend";
+  password = process.env.DEV_PASSWORD;
+  database = "blockcell";
+}
 
-const host = "localhost";
-const user = "rontend";
-const password = "nlcfjb1129";
-const database = "blockcell";
+// const host = "localhost";
+// const user = "rontend";
+// const password = "nlcfjb1129";
+// const database = "blockcell";
 
 export const sequelize = new Sequelize(database, user, password, {
   host,

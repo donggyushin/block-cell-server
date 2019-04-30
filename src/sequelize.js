@@ -20,6 +20,8 @@ if (env == "dev") {
 // const password = "nlcfjb1129";
 // const database = "blockcell";
 
+console.log(user, password, host);
+
 export const sequelize = new Sequelize(database, user, password, {
   host,
   dialect: "mysql",

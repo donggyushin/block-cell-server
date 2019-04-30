@@ -23,4 +23,4 @@ CommentForQna.belongsTo(User);
 CommentForQna.belongsTo(QNA);
 QNA.hasMany(CommentForQna);
 
-sequelize.sync({ force: false });
+sequelize.sync({ force: true });

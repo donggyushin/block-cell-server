@@ -12,7 +12,7 @@ export const newAccoutFN = async (username, password1, password2) => {
 
   const hashedPassword = hashPassword(password1);
 
-  if (username === "blockcell") {
+  if (username === "kovitech") {
     const returnType = await User.findOrCreate({
       where: { username },
       defaults: { password: hashedPassword, admin: true }
